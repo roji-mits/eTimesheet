@@ -1,0 +1,61 @@
+.dailyLog-list(layout='row')
+  span(flex='')
+  div(layout='column')
+    h1 DailyLog
+    form
+      h1 Add Time Sheet
+      table(border=1,)
+        thead
+          tr
+            th Project
+            th Time Taken
+            th Description
+            th Operation
+          tr
+            td
+              md-select(ng-model='newdailyLog.name', placeholder='Select Project Title')
+                md-option(ng-value='project.name', ng-repeat='project in project') {{ project.name }}
+            td 
+              input(ng-model='newdailyLog.time', placeholder='time')
+            td
+              textarea(ng-model='newdailyLog.description', placeholder='description')
+            td 
+              button(ng-click='add()') Add
+
+          tr(ng-repeat='timesheet in timesheets')
+            td
+              md-select(ng-model='timesheet.name', placeholder='Select Project Title')
+                md-option(ng-value='project.name', ng-repeat='project in project') {{ project.name }}
+            td 
+              input(ng-model='timesheet.time', placeholder='time')
+            td
+              textarea(ng-model='timesheet.description', placeholder='description')
+            td 
+              button(ng-click='timesheets.splice($index, 1)') Remove
+          //- tr(dir-paginate='dailyLog in dailyLog | itemsPerPage: perPage', total-items='dailyLogCount.count',  current-page='page')
+          //-   td {{dailyLog.name}}
+          //-   td {{dailyLog.time}}
+          //-   td {{dailyLog.description}}
+          //-   td Remove
+      button(ng-click='save()') Save
+    //- div(layout='row', layout-padding='')
+    //-   md-input-container(flex='65')
+    //-     label Search
+    //-     input(type='search', ng-model='search', placeholder='Search')
+    //-   md-select(ng-model='orderProperty', flex='35')
+    //-     md-option(value='1') Ascending
+    //-     md-option(value='-1') Descending
+
+    //- ul
+    //-   li(dir-paginate='dailyLog in dailyLog | itemsPerPage: perPage', total-items='dailyLogCount.count',  current-page='page')
+    //-     p 
+    //-       a(href='/daily-log/{{dailyLog._id}}') {{ dailyLog.name }}
+    //-       button(ng-click='remove(dailyLog)') &times;
+    //- dir-pagination-controls.md-accent(on-page-change='pageChanged(newPageNumber)')
+
+    //- p Total number of dailyLog: {{dailyLogCount.count}}
+  span(flex='')
+
+
+
+

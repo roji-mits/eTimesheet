@@ -1,0 +1,37 @@
+.project(layout='row')
+  span(flex='')
+  div(layout='column')
+    h1 Projects
+    form.md-whiteframe-z1(id='projectForm', name='form', novalidate='', layout-padding='')
+      p Add a project
+      md-input-container
+        label Name
+        input(ng-model='newProject.name', placeholder='name')
+      md-input-container
+        label Name
+        textarea(ng-model='newProject.description', placeholder='description')
+      div(layout='row', layout-align='space-around center') 
+        label Start Date
+        md-content
+          md-datepicker(ng-model='newProject.startDate', md-placeholder='From')
+        label End Date
+        md-content
+          md-datepicker(ng-model='newProject.endDate', md-placeholder='To')
+        br
+        br
+        br
+      ul Members
+        li(ng-repeat='user in users', style="list-style-type: none;")
+          input(type='checkbox', checklist-model='mem', checklist-value='user._id', ng-disabled="shouldBeDisabled(user.deleted)", ng-click="toggle(user._id, member)", ng-checked="exists(user._id, member)" )
+          {{user.profile[0].firstname}} {{user.emails[0].address}}   
+      label Parent
+      md-select(ng-model='newProject.parent', placeholder='Select Parent Project if any')
+        md-option(ng-value='project._id', ng-repeat='project in project') {{ project.name }}
+
+      md-input-container
+        md-button.md-raised.md-primary(ng-click='save()')
+            | Save
+
+    {{project.name}}
+     
+  span(flex='')

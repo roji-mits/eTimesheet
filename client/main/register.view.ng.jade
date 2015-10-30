@@ -1,0 +1,47 @@
+html
+  body
+    md-content(layout='row')
+      span(flex='')
+      md-whiteframe(layout='column', flex='50')
+        div(layout='row', layout-align='space-around center')
+          div Register
+          md-button Twitter
+          md-button Facebook
+        .md-warn(ng-show='error')
+          small {{ error }}
+        form(layout='column')
+          md-input-container
+            md-icon(md-svg-icon='content:ic_mail_24px')
+            input(type='text', ng-model='profile[0].firstname', placeholder='First Name')
+          md-input-container
+            md-icon(md-svg-icon='content:ic_mail_24px')
+            input(type='text', ng-model='profile[0].middlename', placeholder='Middle Name')
+          md-input-container
+            md-icon(md-svg-icon='content:ic_mail_24px')
+            input(type='text', ng-model='profile[0].lastname', placeholder='Last Name')
+          md-input-container
+            md-icon(md-svg-icon='content:ic_mail_24px')
+            input(type='text', ng-model='profile[0].mobile', placeholder='Mobile Number')
+          md-input-container
+            md-icon(md-svg-icon='content:ic_mail_24px')
+            textarea(type='text', ng-model='profile[0].home', placeholder='Home Number')
+          md-input-container
+            md-icon(md-svg-icon='content:ic_mail_24px')
+            textarea(type='text', ng-model='profile[0].address', placeholder='Address')
+          md-input-container
+            md-icon(md-svg-icon='content:ic_mail_24px')
+            input(type='text', ng-model='email', placeholder='Primary Email')
+          md-input-container
+            md-icon(md-svg-icon='content:ic_mail_24px')
+            input(type='text', ng-model='profile[0].secondryemail', placeholder='Secondary Email')
+          md-input-container
+            md-icon(md-svg-icon='action:ic_lock_open_24px')
+            input(type='password', ng-model='password', placeholder='password')
+          md-input-container
+            md-icon(md-svg-icon='action:ic_lock_open_24px')
+            input(type='password', ng-model='repassword', placeholder='Re-type Password')
+          md-button.md-raised.md-primary(ng-click='register()')
+            | Create Account
+        div(layout='row', layout-align='end center')
+          a(href='/login') Login
+      span(flex='')

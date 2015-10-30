@@ -1,0 +1,62 @@
+.employeemanagement(layout='row')
+  span(flex='')  
+    h1 User Management
+    md-whiteframe(layout='column', flex='50')
+        div(layout='row', layout-align='space-around center')
+          div Add Employee
+        .md-warn(ng-show='error')
+          small {{ error }}
+        form(layout='column' id="registerForm")
+          md-input-container
+            md-icon(md-svg-icon='content:ic_mail_24px')
+            input(type='text', ng-model='profile[0].firstname', placeholder='First Name')
+          md-input-container
+            md-icon(md-svg-icon='content:ic_mail_24px')
+            input(type='text', ng-model='profile[0].middlename', placeholder='Middle Name')
+          md-input-container
+            md-icon(md-svg-icon='content:ic_mail_24px')
+            input(type='text', ng-model='profile[0].lastname', placeholder='Last Name')
+          md-input-container
+            md-icon(md-svg-icon='content:ic_mail_24px')
+            input(type='text', ng-model='profile[0].mobile', placeholder='Mobile Number')
+          md-input-container
+            md-icon(md-svg-icon='content:ic_mail_24px')
+            textarea(type='text', ng-model='profile[0].home', placeholder='Home Number')
+          md-input-container
+            md-icon(md-svg-icon='content:ic_mail_24px')
+            textarea(type='text', ng-model='profile[0].address', placeholder='Address')
+          md-input-container
+            md-icon(md-svg-icon='content:ic_mail_24px')
+            input(type='text', ng-model='email', placeholder='Primary Email')
+          md-input-container
+            md-icon(md-svg-icon='content:ic_mail_24px')
+            input(type='text', ng-model='profile[0].secondryemail', placeholder='Secondary Email')
+          md-input-container
+            md-icon(md-svg-icon='action:ic_lock_open_24px')
+            input(type='password', ng-model='password', placeholder='password')
+          md-button.md-raised.md-primary(ng-click='register()')
+            | Create Account
+  
+    table
+      th S.N
+      th 
+        a(href='#', ng-click="sortType = 'name'; sortReverse = !sortReverse") Name
+      th 
+        a(href='#', ng-click="sortType = 'contact'; sortReverse = !sortReverse") Contact
+      th 
+        a(href='#', ng-click="sortType = 'address'; sortReverse = !sortReverse") Address
+      th 
+        a(href='#', ng-click="sortType = 'email'; sortReverse = !sortReverse") Email Address
+      th Operation
+      tr(dir-paginate='user in users | orderBy:sortType:sortReverse | itemsPerPage: perPage', total-items='usersCount.count',  current-page='page')
+        td{{$index+1}}
+        td{{user.profile[0].firstname }} {{user.profile[0].middlename}} {{user.profile[0].lastname}}
+        td {{user.profile[0].address}}
+        td {{user.profile[0].mobile}}{{}} {{user.profile[0].home}}
+        td {{user.emails[0].address}}
+        td {{user.profile[0].secondaryemail}}
+        td 
+          a(href='/manageemployeeEdit/{{user._id}}')="Edit"
+          button(ng-click='remove(user._id)') Delete
+  span(flex='')
+        

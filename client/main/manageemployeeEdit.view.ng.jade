@@ -1,0 +1,43 @@
+html
+  body
+    md-content(layout='row')
+      span(flex='')
+      md-whiteframe(layout='column', flex='50')
+        div(layout='row', layout-align='space-around center')
+          div Edit
+        form(layout='column')
+          md-input-container
+            md-icon(md-svg-icon='content:ic_mail_24px')
+            input(type='text', ng-model='firstname', placeholder='First Name')
+          md-input-container
+            md-icon(md-svg-icon='content:ic_mail_24px')
+            input(type='text', ng-model='middlename', placeholder='Middle Name')
+          md-input-container
+            md-icon(md-svg-icon='content:ic_mail_24px')
+            input(type='text', ng-model='lastname', placeholder='Last Name')
+          md-input-container
+            md-icon(md-svg-icon='content:ic_mail_24px')
+            input(type='text', ng-model='mobile', placeholder='Mobile Number')
+          md-input-container
+            md-icon(md-svg-icon='content:ic_mail_24px')
+            textarea(type='text', ng-model='home', placeholder='Home Number')
+          md-input-container
+            md-icon(md-svg-icon='content:ic_mail_24px')
+            textarea(type='text', ng-model='address', placeholder='Address')
+          md-input-container
+            md-icon(md-svg-icon='content:ic_mail_24px')
+            input(type='text', ng-model='email', placeholder='Primary Email')
+          md-input-container
+            md-icon(md-svg-icon='content:ic_mail_24px')
+            input(type='text', ng-model='secondaryemail', placeholder='Secondary Email')
+          md-input-container
+            md-icon(md-svg-icon='action:ic_lock_open_24px')
+            input(type='password', ng-model='password', placeholder='password')
+          md-input-container
+            md-icon(md-svg-icon='action:ic_lock_open_24px')
+            input(type='password', ng-model='repassword', placeholder='Re-type Password')
+          div(layout='row', layout-align='end center')
+            input.md-button(type='submit', value='Save' ng-click='save()')
+            a(ng-href='/reset') Reset
+            md-button(ng-href='/manageemployee') Cancel
+      span(flex='')

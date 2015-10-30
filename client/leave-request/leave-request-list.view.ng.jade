@@ -1,0 +1,57 @@
+.leaveRequest-list(layout='row')
+  span(flex='')
+  div(layout='column')
+    h1 LeaveRequest
+    form.md-whiteframe-z1(ng-submit='save()', name='form', novalidate='', layout-padding='')
+      p Add a leaveRequest
+      md-input-container
+      div(layout='row', layout-align='space-around center') 
+        label Start Date
+        md-content
+          md-datepicker(ng-model='newLeaveRequest.startDate', md-placeholder='From')
+        label End Date
+        md-content
+          md-datepicker(ng-model='newLeaveRequest.endDate', md-placeholder='To')
+      br
+      br
+      br
+      label Leave Reason
+      textarea(ng-model='newLeaveRequest.leaveReason', placeholder='Leave Reason' col='10')
+      br
+      br
+      input.md-button(type='submit', value='Add')
+    //- div(layout='row', layout-padding='')
+    //-   md-input-container(flex='65')
+    //-     label Search
+    //-     input(type='search', ng-model='search', placeholder='Search')
+    //-   md-select(ng-model='orderProperty', flex='35')
+    //-     md-option(value='1') Ascending
+    //-     md-option(value='-1') Descending
+
+    //- table
+    //-   th 
+    //-     a(href='#', ng-click="sortType = 'startDate'; sortReverse = !sortReverse") Start Date
+    //-       span(ng-show="sortType == 'startDate' && !sortReverse")
+    //-       span(ng-show="sortType == 'startDate' && sortReverse")
+    //-   th 
+    //-     a(href='#', ng-click="sortType = 'endDate'; sortReverse = !sortReverse") End Date
+    //-       span(ng-show="sortType == 'endDate' && !sortReverse")
+    //-       span(ng-show="sortType == 'endDate' && sortReverse") 
+    //-   th
+    //-     a(href='#', ng-click="sortType = 'leavereason'; sortReverse = !sortReverse") Leave Reason
+    //-       span(ng-show="sortType == 'leavereason' && !sortReverse")
+    //-       span(ng-show="sortType == 'leavereason' && sortReverse") 
+    //-   th Operation
+
+    //-   tr(dir-paginate='leaveRequest in leaveRequest | itemsPerPage: perPage', total-items='leaveRequestCount.count',  current-page='page')
+    //-     td {{leaveRequest.startDate}}
+    //-     td {{leaveRequest.endDate}}
+    //-     td {{leaveRequest.leaveReason}}
+    //-     td  
+    //-       a(href='/leave-request/{{leaveRequest._id}}')="Edit"
+    //-       button(ng-click='remove(leaveRequest)') Delete
+        
+    //- dir-pagination-controls.md-accent(on-page-change='pageChanged(newPageNumber)')
+
+    //- p Total number of leaveRequest: {{leaveRequestCount.count}}
+  span(flex='')
