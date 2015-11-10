@@ -18,9 +18,7 @@ angular.module('etimesheetApp').controller 'RegisterCtrl', ($scope, $meteor, $st
     $scope.user = $scope.$meteorCollection () ->
       Meteor.users.find {}
 
-    $scope.register = () ->
-      
-      
+    $scope.register = () ->           
       Accounts.createUser({email:$scope.email, password:$scope.password, profile:$scope.profile}, (error)->
         if(error)
           console.log(error)
@@ -33,7 +31,7 @@ angular.module('etimesheetApp').controller 'RegisterCtrl', ($scope, $meteor, $st
           console.log($scope.password)
           if($scope.verificationState==false)
             Meteor.call('chckEmail', Meteor.userId(),$scope.emailToVerify, $scope.password)
-            $state.go('not-verified',{userId: Meteor.userId()})
+            $state.go('not-verified')
           else
             $state.go('main')
         )

@@ -7,7 +7,7 @@ angular.module('etimesheetApp')
   $scope.sort = name_sort : 1
   $scope.orderProperty = '1'
   $scope.users = $scope.$meteorCollection () ->
-    Meteor.users.find {}
+    Meteor.users.find {'profile.deleted':0}
   $meteor.autorun $scope, () ->
     $meteor.subscribe('users')
 
@@ -48,3 +48,6 @@ angular.module('etimesheetApp')
       document.getElementById("projectForm").reset()
       $scope.member=[]
       $scope.idx=0
+
+  $scope.remove = (project) ->
+    $scope.project.remove project

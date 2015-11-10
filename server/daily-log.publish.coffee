@@ -5,5 +5,5 @@ Meteor.publish 'dailyLog', (options, searchString) ->
     'name':
       '$regex': '.*' + (searchString or '') + '.*'
       '$options': 'i'
-  Counts.publish this, 'numberOfDailyLog', DailyLog.find({'deleted':0}), noReady: true
+  Counts.publish this, 'numberOfDailyLog', DailyLog.find(), noReady: true
   DailyLog.find where, options

@@ -3,15 +3,15 @@
 Meteor.methods
   delete:(designationId) ->
     console.log(designationId)
-    Designation.update(designationId,{$set:{"deleted":1}})
+    Designation.update(designationId,{$set:{"deleted":'1'}})
   
   departmentDelete:(departmentId) ->
     console.log(departmentId)
-    Department.update(departmentId,{$set:{"deleted":1}})
+    Department.update(departmentId,{$set:{"deleted":'1'}})
 
   organizationDelete:(organizationId) ->
     console.log(organizationId)
-    Organization.update(organizationId,{$set:{"deleted":1}})
+    Organization.update(organizationId,{$set:{"deleted":'1'}})
 
   update: (userId, email, firstname, middlename, lastname, mobile, home, address, secondaryemail) ->
     console.log(userId,email)

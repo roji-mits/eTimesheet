@@ -27,5 +27,7 @@
           button(ng-click='remove(department._id)') &times;
     dir-pagination-controls.md-accent(on-page-change='pageChanged(newPageNumber)')
 
+    a(ng-href='/admin-dashboard') &larr;
+
     p Total number of department: {{departmentCount.count}}
   span(flex='')

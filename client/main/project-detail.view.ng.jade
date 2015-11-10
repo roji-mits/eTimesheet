@@ -1,0 +1,32 @@
+.project-detail(layout='row')
+  span(flex='')
+  form.md-whiteframe-z1(id='projectForm', name='form', novalidate='', layout-padding='')
+    h1 Project Details
+    md-input-container
+      label Name
+      input(ng-model='project.name', placeholder='name')
+    md-input-container
+      label Description
+      textarea(ng-model='project.description', placeholder='description')
+    div(layout='row', layout-align='space-around center') 
+      label Start Date
+      md-content
+        md-datepicker(ng-model='project.startDate', md-placeholder='From')
+      label End Date
+      md-content
+        md-datepicker(ng-model='project.endDate', md-placeholder='To')
+      br
+      br
+      br
+    ul Members
+      li(ng-repeat='user in users', style="list-style-type: none;")
+        input(type='checkbox', ng-click="toggle(user, member)", ng-checked="exists(user, member)" )
+        {{user.profile[0].firstname}} {{user.emails[0].address}}   
+    label Parent
+    md-select(ng-model='project.parent', placeholder='Select Parent Project if any')
+      md-option(ng-value='project.name', ng-repeat='project in project') {{ project.name }}
+
+    md-input-container
+      md-button.md-raised.md-primary(ng-click='save()')
+          | Save
+  span(flex='')

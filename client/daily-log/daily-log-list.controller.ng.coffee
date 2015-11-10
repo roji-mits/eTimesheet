@@ -2,9 +2,10 @@
 
 angular.module 'etimesheetApp'
 .controller 'DailyLogListCtrl', ($scope, $meteor, $rootScope) ->
+  $scope.dataOwner= Meteor.userId()
   $scope.timesheets=[]
   $scope.page = 1
-  $scope.perPage = 100
+  $scope.perPage = 4
   $scope.sort = name_sort : 1
   $scope.orderProperty = '1'
   
@@ -15,13 +16,15 @@ angular.module 'etimesheetApp'
       limit: parseInt($scope.getReactively('perPage'))
       skip: parseInt(($scope.getReactively('page') - 1) * $scope.getReactively('perPage'))
       sort: $scope.getReactively('sort')
-    }, $scope.getReactively('search')).then () ->
+    },(owner:$scope.dataOwner), $scope.getReactively('search')).then () ->
       $scope.dailyLogCount = $scope.$meteorObject Counts, 'numberOfDailyLog', false
 
   $scope.project = $scope.$meteorCollection () ->
     Project.find {}, {sort:$scope.getReactively('sort')}
   $meteor.autorun $scope, () ->
     $scope.$meteorSubscribe('project')
+  console.log($scope.project)
+  console.log($rootScope.currentUser.emails[0].address)
 
 
   $meteor.session 'dailyLogCounter'
@@ -35,7 +38,7 @@ angular.module 'etimesheetApp'
     $scope.newdailyLog=$scope.timesheets
     $scope.dailyLog.save $scope.newdailyLog
     $scope.newdailyLog = undefined
-    $scope.timesheets = undefined
+    $scope.timesheets=[]
     console.log($scope.dailyLog)
       
   $scope.remove = (dailyLog) ->

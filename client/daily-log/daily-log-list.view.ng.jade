@@ -4,6 +4,7 @@
     h1 DailyLog
     form
       h1 Add Time Sheet
+      {{project.member.emails[0].address}}
       table(border=1,)
         thead
           tr
@@ -14,6 +15,7 @@
           tr
             td
               md-select(ng-model='newdailyLog.name', placeholder='Select Project Title')
+                md-option(ng-value='') Select any one
                 md-option(ng-value='project.name', ng-repeat='project in project') {{ project.name }}
             td 
               input(ng-model='newdailyLog.time', placeholder='time')
@@ -25,6 +27,7 @@
           tr(ng-repeat='timesheet in timesheets')
             td
               md-select(ng-model='timesheet.name', placeholder='Select Project Title')
+                md-option(ng-value='') Select any one
                 md-option(ng-value='project.name', ng-repeat='project in project') {{ project.name }}
             td 
               input(ng-model='timesheet.time', placeholder='time')
@@ -32,11 +35,6 @@
               textarea(ng-model='timesheet.description', placeholder='description')
             td 
               button(ng-click='timesheets.splice($index, 1)') Remove
-          //- tr(dir-paginate='dailyLog in dailyLog | itemsPerPage: perPage', total-items='dailyLogCount.count',  current-page='page')
-          //-   td {{dailyLog.name}}
-          //-   td {{dailyLog.time}}
-          //-   td {{dailyLog.description}}
-          //-   td Remove
       button(ng-click='save()') Save
     //- div(layout='row', layout-padding='')
     //-   md-input-container(flex='65')
@@ -54,6 +52,8 @@
     //- dir-pagination-controls.md-accent(on-page-change='pageChanged(newPageNumber)')
 
     //- p Total number of dailyLog: {{dailyLogCount.count}}
+
+    a(href='/employee') Back
   span(flex='')
 
 

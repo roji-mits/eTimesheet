@@ -3,7 +3,7 @@
 angular.module 'etimesheetApp'
 .controller 'DesignationListCtrl', ($scope, $meteor) ->
   $scope.page = 1
-  $scope.perPage = 3
+  $scope.perPage = 4
   $scope.sort = name_sort : 1
   $scope.orderProperty = '1'
   
@@ -22,7 +22,7 @@ angular.module 'etimesheetApp'
     
   $scope.save = () ->
     $scope.newDesignation.deleted='0'
-    $scope.newDesignation.isActive="1"
+    $scope.newDesignation.isActive='1'
     if $scope.form.$valid
       $scope.designation.save $scope.newDesignation
       $scope.newDesignation = undefined

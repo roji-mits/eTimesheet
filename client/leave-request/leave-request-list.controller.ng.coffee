@@ -2,6 +2,7 @@
 
 angular.module 'etimesheetApp'
 .controller 'LeaveRequestListCtrl', ($scope, $meteor) ->
+  $scope.dataOwner= Meteor.userId()
   $scope.page = 1
   $scope.perPage = 5
   $scope.sort = name : 1
@@ -15,7 +16,7 @@ angular.module 'etimesheetApp'
       limit: parseInt($scope.getReactively('perPage'))
       skip: parseInt(($scope.getReactively('page') - 1) * $scope.getReactively('perPage'))
       sort: $scope.getReactively('sort')
-    }, $scope.getReactively('search')).then () ->
+    },(owner:$scope.dataOwner),  $scope.getReactively('search')).then () ->
       $scope.leaveRequestCount = $scope.$meteorObject Counts, 'numberOfLeaveRequest', false
 
   $meteor.session 'leaveRequestCounter'
@@ -24,7 +25,7 @@ angular.module 'etimesheetApp'
   $scope.save = () ->
     $scope.newLeaveRequest.user= $scope.currentUser.profile[0].firstname
     if $scope.form.$valid
-
+      $scope.newLeaveRequest.owner=Meteor.userId()
       $scope.leaveRequest.save $scope.newLeaveRequest
       $scope.newLeaveRequest = undefined
 

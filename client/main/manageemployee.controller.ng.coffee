@@ -32,16 +32,17 @@ angular.module('etimesheetApp')
   .bind $scope, 'page'
 
   $scope.register = () ->
-      Accounts.createUser({email:$scope.email, password:$scope.password, profile:$scope.profile}, (error)->
-        if(error)
-          console.log(error)
-        else
-          console.log('success')
-          document.getElementById("registerForm").reset();
 
-        )
+    Accounts.createUser({email:$scope.email, password:$scope.password, profile:$scope.profile}, (error)->
+      if(error)
+        console.log(error)
+      else
+        console.log('success')
+        document.getElementById("registerForm").reset();
+
+      )
 
   $scope.remove = (user) ->
     console.log(user)
     Meteor.call('remove',user)
-    
+

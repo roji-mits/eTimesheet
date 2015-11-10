@@ -9,7 +9,7 @@ html
           md-button Facebook
         .md-warn(ng-show='error')
           small {{ error }}
-        form(layout='column')
+        form(layout='column' name='form')
           md-input-container
             md-icon(md-svg-icon='content:ic_mail_24px')
             input(type='text', ng-model='profile[0].firstname', placeholder='First Name')
@@ -30,16 +30,27 @@ html
             textarea(type='text', ng-model='profile[0].address', placeholder='Address')
           md-input-container
             md-icon(md-svg-icon='content:ic_mail_24px')
-            input(type='text', ng-model='email', placeholder='Primary Email')
+            input(type='text', ng-model='email', placeholder='Primary Email', name='uEmail', required='')
+            br
+            div(ng-show='form.$submitted || form.uEmail.$touched')
+              span(ng-show='form.uEmail.$error.required') Tell us your email.
+              span(ng-show='form.uEmail.$error.email') This is not a valid email.
           md-input-container
             md-icon(md-svg-icon='content:ic_mail_24px')
             input(type='text', ng-model='profile[0].secondryemail', placeholder='Secondary Email')
           md-input-container
             md-icon(md-svg-icon='action:ic_lock_open_24px')
-            input(type='password', ng-model='password', placeholder='password')
+            input(type='password', ng-model='password', placeholder='password', name='upassword' required='')
+            br
+            div(ng-show='form.$submitted' || 'form.upassword.$touched')
+              span(ng-show='form.upassword.$error.required') Tell us your password
           md-input-container
             md-icon(md-svg-icon='action:ic_lock_open_24px')
-            input(type='password', ng-model='repassword', placeholder='Re-type Password')
+            input(type='password', ng-model='repassword', placeholder='Re-type Password', name='reupassword')
+
+            br
+            div(ng-show='form.$submitted' || 'form.reupassword.$touched')
+
           md-button.md-raised.md-primary(ng-click='register()')
             | Create Account
         div(layout='row', layout-align='end center')

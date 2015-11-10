@@ -8,7 +8,7 @@ angular.module 'etimesheetApp'
   $scope.orderProperty = '1'
   
   $scope.organization = $scope.$meteorCollection () ->
-    Organization.find {'deleted':0}, {sort:$scope.getReactively('sort')}
+    Organization.find {'deleted':'0'}, {sort:$scope.getReactively('sort')}
   $meteor.autorun $scope, () ->
     $scope.$meteorSubscribe('organization', {
       limit: parseInt($scope.getReactively('perPage'))
@@ -21,16 +21,16 @@ angular.module 'etimesheetApp'
   .bind $scope, 'page'
     
   $scope.save = () ->
-    $scope.newOrganization.deleted=0
-    $scope.newOrganization.isActive=1
+    $scope.newOrganization.deleted='0'
+    $scope.newOrganization.isActive='1'
     if $scope.form.$valid
       $scope.organization.save $scope.newOrganization
       $scope.newOrganization = undefined
       
   $scope.remove = (organizationId) ->
     Meteor.call('organizationDelete', organizationId)
-  
-    
+ 
+     
   $scope.pageChanged = (newPage) ->
     $scope.page = newPage
     

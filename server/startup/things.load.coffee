@@ -1,4 +1,11 @@
 Meteor.startup ->
+  Meteor.startup ->
+  if Meteor.users.find().count() == 0
+    users = [{'email':'loceehide_rose@hotmail.com', 
+    'verified':true,
+    'password':'loceehide_rose@hotmail.com'}]
+    users.forEach (user) ->
+      Meteor.users.insert user
   if Things.find().count() == 0
     things = [
       'Data on the Wire'

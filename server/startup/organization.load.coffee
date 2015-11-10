@@ -3,9 +3,11 @@ Meteor.startup ->
     organization = [
       {
         'name': 'organization 1'
+        'deleted':'0'
       }
       {
         'name': 'organization 2'
+        'deleted':'0'
       }
     ]
     organization.forEach (organization) ->

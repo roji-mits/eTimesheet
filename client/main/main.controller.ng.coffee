@@ -2,14 +2,29 @@
 
 angular.module 'etimesheetApp'
 .controller 'MainCtrl', ($scope, $meteor, $state) ->
+  $scope.users = $scope.$meteorCollection () ->
+    Meteor.users.find {'profile.deleted':0}
+  $meteor.autorun $scope, () ->
+    $scope.$meteorSubscribe('users')
   $scope.login = ->
-      $meteor.loginWithPassword($scope.credentials.email, $scope.credentials.password).then (->
-        if($scope.credentials.email=='loceehide_rose@hotmail.com' && $scope.credentials.password=='loceehide_rose@hotmail.com')
-          $state.go 'admin-dashboard'
-        else 
-          $state.go 'employee-dashboard'
+      $meteor.loginWithPassword($scope.credentials.email, $scope.credentials.password).then (->       
+        if($scope.currentUser.emails[0].verified==true)
+          if($scope.credentials.email=='loceehide_rose@hotmail.com' && $scope.credentials.password=='loceehide_rose@hotmail.com')
+            $state.go 'admin-dashboard'
+          else 
+            $state.go 'employee-dashboard'
+        else
+          console.log($scope.currentUser.emails[0].verified)
+          sweetAlert({title: "Please!", text: "Verify email!", type: "error"})
+          return $meteor.logout().then( -> 
+            $state.go('main')
+          , (err) -> 
+            console.log('logout error - ', err);
+          )
+          
       ), (err) ->
         $scope.error = 'Login error - ' + err 
+    
 
   # $scope.page = 1
   # $scope.perPage = 3

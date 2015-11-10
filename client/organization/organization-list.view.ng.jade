@@ -23,8 +23,10 @@
       li(dir-paginate='organization in organization | itemsPerPage: perPage', total-items='organizationCount.count',  current-page='page')
         p 
           a(href='/organization/{{organization._id}}') {{ organization.name }}
+          {{  }}{{organization.description}}
           button(ng-click='remove(organization._id)') &times;
     dir-pagination-controls.md-accent(on-page-change='pageChanged(newPageNumber)')
 
     p Total number of organization: {{organizationCount.count}}
+    a(ng-href='/admin-dashboard') Back
   span(flex='')

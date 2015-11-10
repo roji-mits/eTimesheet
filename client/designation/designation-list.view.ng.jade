@@ -23,9 +23,14 @@
       li(dir-paginate='designation in designation | itemsPerPage: perPage', total-items='designationCount.count',  current-page='page')
         p 
           a(href='/designation/{{designation._id}}') {{ designation.name }}
-          {{ }}{{}}{{designation.description}}
+          {{ }}
+          {{ }}
+          {{designation.description}}
           button(ng-click='delete(designation._id)') &times;
+
     dir-pagination-controls.md-accent(on-page-change='pageChanged(newPageNumber)')
 
     p Total number of designation: {{designationCount.count}}
+
+    a(ng-href='/admin-dashboard') Back
   span(flex='')

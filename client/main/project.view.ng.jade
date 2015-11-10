@@ -8,7 +8,7 @@
         label Name
         input(ng-model='newProject.name', placeholder='name')
       md-input-container
-        label Name
+        label Description
         textarea(ng-model='newProject.description', placeholder='description')
       div(layout='row', layout-align='space-around center') 
         label Start Date
@@ -22,16 +22,38 @@
         br
       ul Members
         li(ng-repeat='user in users', style="list-style-type: none;")
-          input(type='checkbox', checklist-model='mem', checklist-value='user._id', ng-disabled="shouldBeDisabled(user.deleted)", ng-click="toggle(user._id, member)", ng-checked="exists(user._id, member)" )
+          input(type='checkbox', ng-click="toggle(user, member)", ng-checked="exists(user, member)" )
           {{user.profile[0].firstname}} {{user.emails[0].address}}   
       label Parent
       md-select(ng-model='newProject.parent', placeholder='Select Parent Project if any')
-        md-option(ng-value='project._id', ng-repeat='project in project') {{ project.name }}
+        md-option(ng-value='project.name', ng-repeat='project in project') {{ project.name }}
 
       md-input-container
         md-button.md-raised.md-primary(ng-click='save()')
             | Save
 
-    {{project.name}}
+    table(border=1)
+      tr
+        th Name
+        th Description
+        th Start Date
+        th End Date
+        th Members
+        th Parent
+        th Opertaion
+      tr(ng-repeat= 'project in project')
+        td {{project.name}}
+        td {{project.description}}
+        td {{project.startDate | date:'fullDate'}}
+        td {{project.endDate | date:'fullDate'}}
+        td
+          li(ng-repeat='mem in project.member' style='list-style-type:none') {{mem.profile[0].firstname}}
+        td {{project.parent}}
+        td 
+          md-button(ng-click='remove(project)') Remove
+          a(ng-href='/project-detail/{{project._id}}') Edit
+
+    a(ng-href='/admin-dashboard') BACK
+
      
   span(flex='')

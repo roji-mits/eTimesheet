@@ -7,7 +7,9 @@
         th Leave Reason
         th Employee
       tr(ng-repeat='leaveRequest in leaveRequest')
-        td {{leaveRequest.startDate}}
-        td {{leaveRequest.endDate}}
+        td {{leaveRequest.startDate | date:'fullDate'}}
+        td {{leaveRequest.endDate | date:'fullDate'}}
         td {{leaveRequest.leaveReason}}
         td {{leaveRequest.user}}
+    a(ng-href='/admin-dashboard') Back
+   span(flex='')

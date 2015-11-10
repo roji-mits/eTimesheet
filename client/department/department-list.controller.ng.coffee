@@ -3,12 +3,12 @@
 angular.module 'etimesheetApp'
 .controller 'DepartmentListCtrl', ($scope, $meteor) ->
   $scope.page = 1
-  $scope.perPage = 3
+  $scope.perPage = 4
   $scope.sort = name_sort : 1
   $scope.orderProperty = '1'
   
   $scope.department = $scope.$meteorCollection () ->
-    Department.find {deleted:'0'}, {sort:$scope.getReactively('sort')}
+    Department.find {'deleted':'0'}, {sort:$scope.getReactively('sort')}
   $meteor.autorun $scope, () ->
     $scope.$meteorSubscribe('department', {
       limit: parseInt($scope.getReactively('perPage'))
@@ -21,16 +21,16 @@ angular.module 'etimesheetApp'
   .bind $scope, 'page'
     
   $scope.save = () ->
-    $scope.newDepartment.deleted="0"
-    $scope.newDepartment.isAcitve="1"
+    $scope.newDepartment.deleted='0'
+    $scope.newDepartment.isActive='1'
     if $scope.form.$valid
       $scope.department.save $scope.newDepartment
       $scope.newDepartment = undefined
       
-  $scope.remove = (departmentId) ->
-    Meteor.call('departmentDelete',departmentId)
+  $scope.remove = (deparmentId) ->
+    console.log(deparmentId)
+    Meteor.call('departmentDelete', deparmentId)
 
-  
   $scope.pageChanged = (newPage) ->
     $scope.page = newPage
     

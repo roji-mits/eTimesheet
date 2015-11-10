@@ -3,9 +3,11 @@ Meteor.startup ->
     designation = [
       {
         'name': 'designation 1'
+        'deleted':'0'
       }
       {
         'name': 'designation 2'
+        'deleted':'0'
       }
     ]
     designation.forEach (designation) ->

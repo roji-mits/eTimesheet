@@ -4,4 +4,4 @@ angular.module('etimesheetApp')
   $scope.leaveRequest = $scope.$meteorCollection () ->
     LeaveRequest.find {}
   $meteor.autorun $scope, () ->
-    $scope.$meteorSubscribe('leaveRequest')
+    $scope.$meteorSubscribe('leave')
