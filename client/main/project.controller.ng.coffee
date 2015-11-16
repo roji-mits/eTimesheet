@@ -51,3 +51,10 @@ angular.module('etimesheetApp')
 
   $scope.remove = (project) ->
     $scope.project.remove project
+
+  $scope.pageChanged = (newPage) ->
+    $scope.page = newPage
+    
+  $scope.$watch 'orderProperty', () ->
+    if $scope.orderProperty
+      $scope.sort = name_sort: parseInt($scope.orderProperty)

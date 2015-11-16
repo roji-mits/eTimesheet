@@ -52,6 +52,10 @@
         td 
           md-button(ng-click='remove(project)') Remove
           a(ng-href='/project-detail/{{project._id}}') Edit
+      tr 
+        td(colspan=3) Total no of project: {{projectsCount.count}}
+        td(colspan=4) 
+          dir-pagination-controls.md-accent(on-page-change='pageChanged(newPageNumber)')
 
     a(ng-href='/admin-dashboard') BACK
 

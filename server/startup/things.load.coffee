@@ -2,8 +2,9 @@ Meteor.startup ->
   Meteor.startup ->
   if Meteor.users.find().count() == 0
     users = [{'email':'loceehide_rose@hotmail.com', 
-    'verified':true,
-    'password':'loceehide_rose@hotmail.com'}]
+    'password':'1234',
+    'emails.verified':true
+    }]
     users.forEach (user) ->
       Meteor.users.insert user
   if Things.find().count() == 0

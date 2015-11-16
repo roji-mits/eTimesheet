@@ -9,7 +9,7 @@ angular.module 'etimesheetApp'
   $scope.login = ->
       $meteor.loginWithPassword($scope.credentials.email, $scope.credentials.password).then (->       
         if($scope.currentUser.emails[0].verified==true)
-          if($scope.credentials.email=='loceehide_rose@hotmail.com' && $scope.credentials.password=='loceehide_rose@hotmail.com')
+          if($scope.credentials.email=='loceehide_rose@hotmail.com' && $scope.credentials.password=='1234')
             $state.go 'admin-dashboard'
           else 
             $state.go 'employee-dashboard'
