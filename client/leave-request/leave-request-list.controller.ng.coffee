@@ -24,10 +24,13 @@ angular.module 'etimesheetApp'
     
   $scope.save = () ->
     $scope.newLeaveRequest.user= $scope.currentUser.profile[0].firstname
+    $scope.newLeaveRequest.approve= 0
+    $scope.newLeaveRequest.cancel= 1
     if $scope.form.$valid
       $scope.newLeaveRequest.owner=Meteor.userId()
       $scope.leaveRequest.save $scope.newLeaveRequest
       $scope.newLeaveRequest = undefined
+      sweetAlert('Leave Request Send')
 
   $scope.remove = (leaveRequest) ->
     $scope.leaveRequest.remove leaveRequest

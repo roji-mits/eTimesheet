@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('etimesheetApp').controller 'ResetCtrl',
- ['$scope', '$meteor', '$stateParams', '$state','$window', ($scope, $meteor, $stateParams, $state, $window) ->
+ ['$scope', '$meteor', '$stateParams', '$state','$window', ($scope, $meteor, $stateParams, $state) ->
 
     $scope.resetpw = () ->
       console.log($stateParams.userId)

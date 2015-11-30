@@ -10,8 +10,4 @@ Meteor.methods
 
   
 
-
-
-  
-
-  
+ ##Meteor.users.update('emails.address':useradd,{$set:{emails:[{"address":useradd,"verified":true,"isActive":1}]}})

@@ -18,13 +18,29 @@
       md-select(ng-model='orderProperty', flex='35')
         md-option(value='1') Ascending
         md-option(value='-1') Descending
-
-    ul
-      li(dir-paginate='department in department | itemsPerPage: perPage', total-items='departmentCount.count',  current-page='page')
-        p 
-          a(href='/department/{{department._id}}') {{ department.name }}
-          {{ }} {{  department.description}}
-          button(ng-click='remove(department._id)') &times;
+    
+    div(class="CSSTableGenerator")
+      table
+        tr
+          th S.N
+          th Name
+          th Description
+          th Operation
+        tr(dir-paginate='department in department | itemsPerPage: perPage', total-items='departmentCount.count',  current-page='page')
+          td {{$index+1}}
+          td {{department.name}}
+          td {{department.description}}
+          td 
+            a(href='/department/{{department._id}}') 
+              i.fa.fa-edit
+            button(ng-click='remove(department._id)')
+              i.fa.fa-trash-o
+    //- ul
+    //-   li(dir-paginate='department in department | itemsPerPage: perPage', total-items='departmentCount.count',  current-page='page')
+    //-     p 
+    //-       a(href='/department/{{department._id}}') {{ department.name }}
+    //-       {{ }} {{  department.description}}
+    //-       button(ng-click='remove(department._id)') &times;
     dir-pagination-controls.md-accent(on-page-change='pageChanged(newPageNumber)')
 
     a(ng-href='/admin-dashboard') &larr;

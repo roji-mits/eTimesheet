@@ -22,7 +22,7 @@
         br
       ul Members
         li(ng-repeat='user in users', style="list-style-type: none;")
-          input(type='checkbox', ng-click="toggle(user, member)", ng-checked="exists(user, member)" )
+          input(type='checkbox', ng-click="toggle(user, member)", ng-checked="exist(user, member)" )
           {{user.profile[0].firstname}} {{user.emails[0].address}}   
       label Parent
       md-select(ng-model='newProject.parent', placeholder='Select Parent Project if any')
@@ -31,31 +31,33 @@
       md-input-container
         md-button.md-raised.md-primary(ng-click='save()')
             | Save
-
-    table(border=1)
-      tr
-        th Name
-        th Description
-        th Start Date
-        th End Date
-        th Members
-        th Parent
-        th Opertaion
-      tr(ng-repeat= 'project in project')
-        td {{project.name}}
-        td {{project.description}}
-        td {{project.startDate | date:'fullDate'}}
-        td {{project.endDate | date:'fullDate'}}
-        td
-          li(ng-repeat='mem in project.member' style='list-style-type:none') {{mem.profile[0].firstname}}
-        td {{project.parent}}
-        td 
-          md-button(ng-click='remove(project)') Remove
-          a(ng-href='/project-detail/{{project._id}}') Edit
-      tr 
-        td(colspan=3) Total no of project: {{projectsCount.count}}
-        td(colspan=4) 
-          dir-pagination-controls.md-accent(on-page-change='pageChanged(newPageNumber)')
+    div(class="CSSTableGenerator", margin-bottom='30px')
+      table
+        tr
+          th Name
+          th Description
+          th Start Date
+          th End Date
+          th Members
+          th Parent
+          th Opertaion
+        tr(ng-repeat= 'project in project')
+          td {{project.name}}
+          td {{project.description}}
+          td {{project.startDate | date:'fullDate'}}
+          td {{project.endDate | date:'fullDate'}}
+          td
+            li(ng-repeat='mem in project.member' style='list-style-type:none') {{mem.profile[0].firstname}}
+          td {{project.parent}}
+          td 
+            md-button(ng-click='remove(project)') 
+              i.fa.fa-trash-o.fa-2x
+            a(ng-href='/project-detail/{{project._id}}') 
+              i.fa.fa-edit.fa-2x
+        tr 
+          td(colspan=3) Total no of project: {{projectsCount.count}}
+          td(colspan=4) 
+            dir-pagination-controls.md-accent(on-page-change='pageChanged(newPageNumber)')
 
     a(ng-href='/admin-dashboard') BACK
 

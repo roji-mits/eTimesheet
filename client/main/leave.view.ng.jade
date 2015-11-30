@@ -1,15 +1,29 @@
-.leave(layout='row')
+.leave(layout='row' layout-align='space-around start')
   span(flex='') 
-    table
-      tr
-        th Start Date
-        th End Date
-        th Leave Reason
-        th Employee
-      tr(ng-repeat='leaveRequest in leaveRequest')
-        td {{leaveRequest.startDate | date:'fullDate'}}
-        td {{leaveRequest.endDate | date:'fullDate'}}
-        td {{leaveRequest.leaveReason}}
-        td {{leaveRequest.user}}
-    a(ng-href='/admin-dashboard') Back
-   span(flex='')
+  div(layout-='column')
+    div(class='CSSTableGenerator')
+      table
+        tr
+          th Start Date
+          th End Date
+          th Leave Reason
+          th Employee
+          th Approval
+        tr(ng-repeat='leaveRequest in leaveRequest')
+          td {{leaveRequest.startDate | date:'fullDate'}}
+          td {{leaveRequest.endDate | date:'fullDate'}}
+          td {{leaveRequest.leaveReason}}
+          td {{leaveRequest.user}}
+          td 
+            button(ng-click='approve(leaveRequest._id)' ng-if='!leaveRequest.approve') 
+              i.fa.fa-thumbs-up(style='color:red')
+            button(ng-if='leaveRequest.approve') 
+              i.fa.fa-thumbs-up(style='color:green')
+            button(ng-if='!leaveRequest.cancel') 
+              i.fa.fa-ban(style='color:green')
+            button(ng-click='cancelApproval(leaveRequest._id)', ng-if='leaveRequest.cancel') 
+              i.fa.fa-ban(style='color:red')
+
+    a(ng-href='/admin-dashboard') 
+      i.fa.fa-hand-o-left.fa-2x(style='color:black')
+  span(flex='')

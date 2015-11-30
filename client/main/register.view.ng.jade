@@ -1,58 +1,74 @@
 html
   body
-    md-content(layout='row')
+    md-content(layout='column')
+      div(layout="row" layout-align="end start")
+        div(layout-align='space-between')
+          i.fa.fa-sign-in.fa-2x
+          i.fa.fa-twitter.fa-2x(style='color:Cyan')
+          i.fa.fa-facebook.fa-2x(style='color:Blue')
       span(flex='')
-      md-whiteframe(layout='column', flex='50')
+      md-whiteframe(layout='column', layout-align='center center')
         div(layout='row', layout-align='space-around center')
-          div Register
-          md-button Twitter
-          md-button Facebook
         .md-warn(ng-show='error')
           small {{ error }}
         form(layout='column' name='form')
-          md-input-container
-            md-icon(md-svg-icon='content:ic_mail_24px')
-            input(type='text', ng-model='profile[0].firstname', placeholder='First Name')
-          md-input-container
-            md-icon(md-svg-icon='content:ic_mail_24px')
-            input(type='text', ng-model='profile[0].middlename', placeholder='Middle Name')
-          md-input-container
-            md-icon(md-svg-icon='content:ic_mail_24px')
-            input(type='text', ng-model='profile[0].lastname', placeholder='Last Name')
-          md-input-container
-            md-icon(md-svg-icon='content:ic_mail_24px')
-            input(type='text', ng-model='profile[0].mobile', placeholder='Mobile Number')
-          md-input-container
-            md-icon(md-svg-icon='content:ic_mail_24px')
-            textarea(type='text', ng-model='profile[0].home', placeholder='Home Number')
-          md-input-container
-            md-icon(md-svg-icon='content:ic_mail_24px')
-            textarea(type='text', ng-model='profile[0].address', placeholder='Address')
-          md-input-container
-            md-icon(md-svg-icon='content:ic_mail_24px')
-            input(type='text', ng-model='email', placeholder='Primary Email', name='uEmail', required='')
-            br
-            div(ng-show='form.$submitted || form.uEmail.$touched')
-              span(ng-show='form.uEmail.$error.required') Tell us your email.
-              span(ng-show='form.uEmail.$error.email') This is not a valid email.
-          md-input-container
-            md-icon(md-svg-icon='content:ic_mail_24px')
-            input(type='text', ng-model='profile[0].secondryemail', placeholder='Secondary Email')
-          md-input-container
-            md-icon(md-svg-icon='action:ic_lock_open_24px')
-            input(type='password', ng-model='password', placeholder='password', name='upassword' required='')
-            br
-            div(ng-show='form.$submitted' || 'form.upassword.$touched')
-              span(ng-show='form.upassword.$error.required') Tell us your password
-          md-input-container
-            md-icon(md-svg-icon='action:ic_lock_open_24px')
-            input(type='password', ng-model='repassword', placeholder='Re-type Password', name='reupassword')
+          md-button
+            h2 Please Fill Up All The Details
+          .md-whiteframe-17dp
+            md-input-container
+              md-icon(md-svg-icon='content:ic_mail_24px')
+              label First Name 
+              input(type='text', ng-model='profile[0].firstname', aria-label='First Name')
+            md-input-container
+              md-icon(md-svg-icon='content:ic_mail_24px')
+              label Middle Name
+              input(type='text', ng-model='profile[0].middlename', aria-label='Middle Name')
+            md-input-container
+              md-icon(md-svg-icon='content:ic_mail_24px')
+              label Last Name
+              input(type='text', ng-model='profile[0].lastname', aria-label='Last Name')
+            md-input-container
+              md-icon(md-svg-icon='content:ic_mail_24px')
+              label Mobile Number
+              input(type='text', ng-model='profile[0].mobile', aria-label='Mobile Number')
+            md-input-container
+              md-icon(md-svg-icon='content:ic_mail_24px')
+              label Home Number
+              input(type='text', ng-model='profile[0].home', aria-label='Home Number')
+            md-input-container
+              md-icon(md-svg-icon='content:ic_mail_24px')
+              label Address
+              textarea(type='text', ng-model='profile[0].address', aria-label='Address')
+            md-input-container
+              md-icon(md-svg-icon='content:ic_mail_24px')
+              label Primary Email
+              input(type='text', ng-model='email', aria-label='Primary Email', name='uEmail', required='')
+              br
+              div(ng-show='form.$submitted || form.uEmail.$touched')
+                span(ng-show='form.uEmail.$error.required') Enter your email.
+                span(ng-show='form.uEmail.$error.email') This is not a valid email.
+            md-input-container
+              md-icon(md-svg-icon='content:ic_mail_24px')
+              label Secondary Email
+              input(type='text', ng-model='profile[0].secondaryemail', aria-label='Secondary Email')
+            md-input-container
+              md-icon(md-svg-icon='action:ic_lock_open_24px')
+              label Password
+              input(type='password', ng-model='password', aria-label='password', name='upassword' required='')
+              br
+              div(ng-show='form.$submitted || form.upassword.$touched')
+                span(ng-show='form.upassword.$error.required') Enter your password
+            md-input-container
+              md-icon(md-svg-icon='action:ic_lock_open_24px')
+              label Confirm Password
+              input(type='password', ng-model='repassword', aria-label='Re-type Password', name='reupassword')
+              br
+              div(ng-show='form.$submitted || form.reupassword.$touched')
 
-            br
-            div(ng-show='form.$submitted' || 'form.reupassword.$touched')
 
           md-button.md-raised.md-primary(ng-click='register()')
             | Create Account
         div(layout='row', layout-align='end center')
-          a(href='/login') Login
+          a(href='/login')
+            md-button.md-raised.md-primary Already A Member?
       span(flex='')

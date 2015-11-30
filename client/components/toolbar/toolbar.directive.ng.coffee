@@ -7,7 +7,7 @@ angular.module 'etimesheetApp'
   replace: true
 .controller 'toolCtrl',($scope )->
   $scope.user=(user)->
-    if user =='loceehide_rose@hotmail.com'
+    if user =='roji@makeitsimple.info'
       return false
     else
       return true

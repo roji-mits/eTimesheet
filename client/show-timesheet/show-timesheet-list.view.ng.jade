@@ -1,0 +1,30 @@
+.showTimesheet-list(layout='row')
+  span(flex='')
+  div(layout='column')
+    {{dailyLog}}
+    h1 TimeSheet
+    div(layout='row', layout-padding='')
+      md-input-container(flex='65')
+        label Search
+        input(type='search', ng-model='search', placeholder='Search')
+    div(class='CSSTableGenerator')
+      table
+        tr
+          th Project Title
+          th Time Taken
+          th Task
+          th Added By
+
+        tr(dir-paginate='dailyLog in dailyLogs |itemsPerPage: perPage', total-items='dailyLogCount.count',  current-page='page')
+          td {{dailyLog.name}}
+          td {{dailyLog.time +'hrs'}}
+          td {{dailyLog.description}}
+          td {{dailyLog.employee}}
+        tr
+          td(colspan='2')
+            dir-pagination-controls.md-accent(on-page-change='pageChanged(newPageNumber)')  
+          td(colspan='2')
+            p Total number of Timesheet: {{dailyLogCount.count}}
+    a(ng-href='/admin-dashboard') 
+        i.fa.fa-hand-o-left.fa-2x(style='color:black')
+  spam(flex='')

@@ -1,6 +1,8 @@
 'use strict'
 angular.module('etimesheetApp')
-.controller 'ManageEmployeeCtrl', ($scope, $meteor, $state) ->
+.controller 'ManageEmployeeCtrl', ($scope, $meteor, $state, $stateParams) ->
+  $scope.email=''
+  $scope.password=''
   $scope.profile=[
       firstname:'',
       middlename:'',
@@ -32,15 +34,28 @@ angular.module('etimesheetApp')
   .bind $scope, 'page'
 
   $scope.register = () ->
-
     Accounts.createUser({email:$scope.email, password:$scope.password, profile:$scope.profile}, (error)->
       if(error)
         console.log(error)
       else
         console.log('success')
+        console.log($scope.users[0].emails[0].verified)
+        $scope.verified=$scope.users[0].emails[0].verified
+        Meteor.call('verification', Meteor.userId(), $scope.verified)
+        console.log($scope.users[0].emails[0].verified)
+
         document.getElementById("registerForm").reset();
 
       )
+  $scope.verify =(user) ->
+    console.log($scope.users[0].emails[0].verified)
+    Meteor.call('adminVerify', user)
+
+  $scope.deactive =(user) ->
+    Meteor.call('deactive', user)
+
+  $scope.active =(user) ->
+    Meteor.call('active', user)
 
   $scope.remove = (user) ->
     console.log(user)

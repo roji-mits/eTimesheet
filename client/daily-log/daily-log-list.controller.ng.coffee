@@ -9,6 +9,8 @@ angular.module 'etimesheetApp'
   $scope.sort = name_sort : 1
   $scope.orderProperty = '1'
   
+
+
   $scope.dailyLog = $scope.$meteorCollection () ->
     DailyLog.find {}, {sort:$scope.getReactively('sort')}
   $meteor.autorun $scope, () ->
@@ -19,11 +21,11 @@ angular.module 'etimesheetApp'
     },(owner:$scope.dataOwner), $scope.getReactively('search')).then () ->
       $scope.dailyLogCount = $scope.$meteorObject Counts, 'numberOfDailyLog', false
 
+  
   $scope.project = $scope.$meteorCollection () ->
-    Project.find {}, {sort:$scope.getReactively('sort')}
+    Project.find {"member.emails.0.address":$rootScope.currentUser.emails[0].address}, {sort:$scope.getReactively('sort')}
   $meteor.autorun $scope, () ->
     $scope.$meteorSubscribe('project')
-  console.log($scope.project)
   console.log($rootScope.currentUser.emails[0].address)
 
 
@@ -36,6 +38,7 @@ angular.module 'etimesheetApp'
   
   $scope.save = () ->
     $scope.newdailyLog=$scope.timesheets
+    $scope.newdailyLog.savedDate= new Date()
     $scope.dailyLog.save $scope.newdailyLog
     $scope.newdailyLog = undefined
     $scope.timesheets=[]

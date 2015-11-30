@@ -6,7 +6,7 @@ Meteor.publish 'leaveRequest', (options, checkOwner, searchString) ->
       '$regex': '.*' + (searchString or '') + '.*'
       '$options': 'i'
     'owner':checkOwner.owner
-  Counts.publish this, 'numberOfLeaveRequest', LeaveRequest.find({checkOwner}), noReady: true
+  Counts.publish this, 'numberOfLeaveRequest', LeaveRequest.find(), noReady: true
   LeaveRequest.find where, options
 
 Meteor.publish 'leave', (options, searchString) ->

@@ -1,19 +1,44 @@
-.admindashboard(layout='row')
+.admin-dashboard(layout='column')
   span(flex='')
-  div(layout='row', layout-padding='')
+  div(layout='column', layout-align='center center')
     h1 Admin Dashboard
-    md-input-container
-      h3 User Management
-
-      a(href='/manageemployee') Manage Employee
-      a(href='/organization') Manage Organization 
-
-    md-input-container
-      h3 List Data Management
-      a(href='/department') Manage Department
-      a(href='/designation') Manage Designation
-      a(href='/project') Add Project
-      a(href='/leave') Show Leave Request
-      a(href='/timesheet') Show Time Sheet
-  
+    div(layout='column', layout-align='start center')
+      div(style="width:800px; margin-bottom:50px")
+        .md-whiteframe-20dp
+          md-input-container
+            h3 User Management
+            div(layout='row', layout-align='space-between start')
+              div(layout='column', layout-align='center center')
+                i.fa.fa-circle-thin.fa-5x
+                a(href='/manageemployee') 
+                  md-button Manage Employee
+              div(layout='column', layout-align='center center')
+                i.fa.fa-circle-thin.fa-5x
+                a(href='/organization') 
+                  md-button Manage Organization 
+              div(layout='column', layout-align='center center')
+                i.fa.fa-circle-thin.fa-5x
+                a(href='/leave')
+                  md-button Show Leave Request
+      div(style="width:800px; margin-bottom:50px")
+        .md-whiteframe-20dp
+          md-input-container
+            h3 List Data Management
+            div(layout='row', layout-align='space-between start')
+              div(layout='column', layout-align='center center')
+                i.fa.fa-circle-thin.fa-5x
+                a(href='/department') 
+                  md-button Manage Department
+              div(layout='column', layout-align='center center')
+                i.fa.fa-circle-thin.fa-5x
+                a(href='/designation')
+                  md-button Manage Designation
+              div(layout='column', layout-align='center center')
+                i.fa.fa-circle-thin.fa-5x
+                a(href='/project')
+                  md-button Add Project
+              div(layout='column', layout-align='center center')
+                i.fa.fa-circle-thin.fa-5x
+                a(href='/show-timesheet')
+                    md-button Show Time Sheet
   span(flex='')

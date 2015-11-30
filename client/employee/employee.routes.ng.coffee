@@ -24,6 +24,11 @@ angular.module 'etimesheetApp'
     templateUrl: 'client/employee/employee-dashboard.view.html'
     controller: 'EmployeeDashboardCtrl'
     resolve:
-      currentUser: ['$meteor', ($meteor) ->
-        $meteor.requireUser()
+      currentUser: ['$meteor','$state', ($meteor,$state) ->
+        $meteor.requireValidUser((user)->
+          if(user.emails[0].verified==true)
+             return true
+          else
+            $state.go('not-verified')
+          )
       ]

@@ -49,15 +49,6 @@ angular.module 'etimesheetApp'
         $meteor.requireUser()
       ]
 
-  .state 'timesheet',
-    url: '/timesheet'
-    templateUrl: 'client/main/timesheet.view.html'
-    controller: 'TimesheetCtrl'
-    resolve:
-      currentUser: ['$meteor', ($meteor) ->
-        $meteor.requireUser()
-      ]
-
   .state 'admin-dashboard',
     url: '/admin-dashboard'
     templateUrl: 'client/main/admin-dashboard.view.html'
@@ -103,7 +94,7 @@ angular.module 'etimesheetApp'
         $meteor.requireUser()
       ]
 
-   .state 'project-detail',
+  .state 'project-detail',
     url: '/project-detail/:projectId'
     templateUrl: 'client/main/project-detail.view.html'
     controller: 'ProjectDetailCtrl'
@@ -111,3 +102,11 @@ angular.module 'etimesheetApp'
       currentUser: ['$meteor', ($meteor) ->
         $meteor.requireUser()
       ]
+
+  .state 'verify',
+    url: '/verify-email/:verifyEmailToken'
+    template: 'your mail is verified'
+    controller:($stateParams, $meteor)->
+      console.log($stateParams)
+      console.log($stateParams.verifyEmailToken)
+      Meteor.call('verifyEmail',$stateParams.verifyEmailToken)

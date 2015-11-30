@@ -18,15 +18,30 @@
       md-select(ng-model='orderProperty', flex='35')
         md-option(value='1') Ascending
         md-option(value='-1') Descending
-
-    ul
-      li(dir-paginate='designation in designation | itemsPerPage: perPage', total-items='designationCount.count',  current-page='page')
-        p 
-          a(href='/designation/{{designation._id}}') {{ designation.name }}
-          {{ }}
-          {{ }}
-          {{designation.description}}
-          button(ng-click='delete(designation._id)') &times;
+    div(class="CSSTableGenerator")
+      table
+        tr
+          th S.N
+          th Name
+          th Description
+          th Operation
+        tr(dir-paginate='designation in designation | itemsPerPage: perPage', total-items='designationCount.count',  current-page='page')
+          td {{$index+1}}
+          td {{designation.name}}
+          td {{designation.description}}
+          td 
+            a(href='/designation/{{designation._id}}') 
+              i.fa.fa-edit
+            button(ng-click='remove(designation._id)')
+              i.fa.fa-trash-o
+    //- ul
+    //-   li(dir-paginate='designation in designation | itemsPerPage: perPage', total-items='designationCount.count',  current-page='page')
+    //-     p 
+    //-       a(href='/designation/{{designation._id}}') {{ designation.name }}
+    //-       {{ }}
+    //-       {{ }}
+    //-       {{designation.description}}
+    //-       button(ng-click='delete(designation._id)') &times;
 
     dir-pagination-controls.md-accent(on-page-change='pageChanged(newPageNumber)')
 

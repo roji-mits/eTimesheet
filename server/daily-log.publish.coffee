@@ -2,7 +2,7 @@
 
 Meteor.publish 'dailyLog', (options, searchString) ->
   where =
-    'name':
+    '_id':
       '$regex': '.*' + (searchString or '') + '.*'
       '$options': 'i'
   Counts.publish this, 'numberOfDailyLog', DailyLog.find(), noReady: true

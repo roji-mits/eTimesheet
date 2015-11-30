@@ -27,7 +27,7 @@ angular.module('etimesheetApp')
     else
       return false
   
-  $scope.exist=(users,list)->
+  $scope.exists=(users,list)->
     return list.indexOf(users) > -1
 
   $scope.toggle =  (users, list)->
@@ -44,7 +44,7 @@ angular.module('etimesheetApp')
     $scope.newProject.member=$scope.member
     if $scope.form.$valid
       $scope.project.save $scope.newProject
-      alert('done!')
+      sweetAlert('Project Added!')
       document.getElementById("projectForm").reset()
       $scope.member=[]
       $scope.idx=0

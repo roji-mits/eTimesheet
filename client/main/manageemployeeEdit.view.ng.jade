@@ -8,34 +8,46 @@ html
         form(layout='column')
           md-input-container
             md-icon(md-svg-icon='content:ic_mail_24px')
-            input(type='text', ng-model='firstname', placeholder='First Name')
+            label First Name
+            input(type='text', ng-model='firstname', arial-label='First Name')
           md-input-container
             md-icon(md-svg-icon='content:ic_mail_24px')
-            input(type='text', ng-model='middlename', placeholder='Middle Name')
+            label Middle Name
+            input(type='text', ng-model='middlename', arial-label='Middle Name')
           md-input-container
             md-icon(md-svg-icon='content:ic_mail_24px')
-            input(type='text', ng-model='lastname', placeholder='Last Name')
+            label Last Name
+            input(type='text', ng-model='lastname', arial-label='Last Name')
           md-input-container
             md-icon(md-svg-icon='content:ic_mail_24px')
-            input(type='text', ng-model='mobile', placeholder='Mobile Number')
+            label Designation
+            md-select(ng-model='empdesignation', placeholder='Select Designation')
+              md-option(ng-value='designation.name', ng-repeat='designation in designation') {{ designation.name }}
           md-input-container
             md-icon(md-svg-icon='content:ic_mail_24px')
-            textarea(type='text', ng-model='home', placeholder='Home Number')
+            label Department
+            md-select(ng-model='empdepartment', placeholder='Select Department')
+              md-option(ng-value='department.name', ng-repeat='department in department') {{ department.name }}
           md-input-container
             md-icon(md-svg-icon='content:ic_mail_24px')
-            textarea(type='text', ng-model='address', placeholder='Address')
+            label Mobile Number
+            input(type='text', ng-model='mobile', arial-label='Mobile Number')
           md-input-container
             md-icon(md-svg-icon='content:ic_mail_24px')
-            input(type='text', ng-model='email', placeholder='Primary Email')
+            label Home Number
+            textarea(type='text', ng-model='home', arial-label='Home Number')
           md-input-container
             md-icon(md-svg-icon='content:ic_mail_24px')
-            input(type='text', ng-model='secondaryemail', placeholder='Secondary Email')
+            label Address
+            textarea(type='text', ng-model='address', arial-label='Address')
           md-input-container
-            md-icon(md-svg-icon='action:ic_lock_open_24px')
-            input(type='password', ng-model='password', placeholder='password')
+            md-icon(md-svg-icon='content:ic_mail_24px')
+            label Primary Email
+            input(type='text', ng-model='email', arial-label='Primary Email')
           md-input-container
-            md-icon(md-svg-icon='action:ic_lock_open_24px')
-            input(type='password', ng-model='repassword', placeholder='Re-type Password')
+            md-icon(md-svg-icon='content:ic_mail_24px')
+            label Secondary Email
+            input(type='text', ng-model='secondaryemail', arial-label='Secondary Email')
           div(layout='row', layout-align='end center')
             input.md-button(type='submit', value='Save' ng-click='save()')
             a(ng-href='/reset') Reset
